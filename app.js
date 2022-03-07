@@ -33,8 +33,11 @@ app.use(rateLimiter({
 app.use(cors());
 app.use(xss());
 app.use(helmet());
-app.use(express.static('./public'));
+// app.use(express.static('./public'));
 app.use(express.json());
+app.get('/', (req, res) => {
+    res.status(200).send('Hello')
+})
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/jobs', authenticateUser, jobsRouter);
 app.use(notFoundMiddleware);
