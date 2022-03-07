@@ -1,0 +1,274 @@
+openapi: 3.0.0
+info:
+  title: jobs-api.yaml
+  description: ''
+  contact: {}
+  version: '1.0'
+servers:
+- url: 'https://node-jobs-api01.herokuapp.com/api/v1'
+
+paths:
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+          minimum: 1
+        description: The Job ID
+    delete:
+      tags:
+      - jobs
+      summary: deleteJob
+      description: ''
+      operationId: deleteJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema: {}
+      deprecated: false
+      security:
+      - bearer: []
+    patch:
+      tags:
+      - jobs
+      summary: updateJob
+      description: ''
+      operationId: updateJob
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateJobRequest'
+            example:
+              company: netflix
+              position: direction
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema: {}
+      deprecated: false
+      security:
+      - bearer: []
+    get:
+      tags:
+      - jobs
+      summary: getJob
+      description: ''
+      operationId: getJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema: {}
+            text/plain:
+              schema: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /jobs:
+    get:
+      tags:
+      - jobs
+      summary: getAllJobs
+      description: ''
+      operationId: getAllJobs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - jobs
+      summary: createJob
+      description: ''
+      operationId: createJob
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createJobRequest'
+            example:
+              company: mappa
+              position: direction
+              status: pending
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /auth/register:
+    post:
+      tags:
+      - auth
+      summary: register
+      description: ''
+      operationId: register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerRequest'
+            example:
+              name: yamato0101
+              password: yamato0101
+              email: yamato0101@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+      - auth
+      summary: login
+      description: ''
+      operationId: login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loginRequest'
+            example:
+              email: yamato0101@gmail.com
+              password: yamato0101
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema: {}
+      deprecated: false
+      security: []
+  /:
+    get:
+      summary: Home
+      description: ''
+      operationId: Home
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    updateJobRequest:
+      title: updateJobRequest
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: netflix
+        position: direction
+    createJobRequest:
+      title: createJobRequest
+      required:
+      - company
+      - position
+      - status
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+        status:
+          type: string
+      example:
+        company: mappa
+        position: direction
+        status: pending
+    registerRequest:
+      title: registerRequest
+      required:
+      - name
+      - password
+      - email
+      type: object
+      properties:
+        name:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+      example:
+        name: yamato0101
+        password: yamato0101
+        email: yamato0101@gmail.com
+    loginRequest:
+      title: loginRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: yamato0101@gmail.com
+        password: yamato0101
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: jobs
+  description: ''
+- name: auth
+  description: ''
