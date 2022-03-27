@@ -181,21 +181,6 @@ paths:
               schema: {}
       deprecated: false
       security: []
-  /:
-    get:
-      summary: Home
-      description: ''
-      operationId: Home
-      parameters: []
-      responses:
-        '200':
-          description: ''
-          headers: {}
-          content:
-            application/json:
-              schema: {}
-      deprecated: false
-      security: []
 components:
   schemas:
     updateJobRequest:
